@@ -1,0 +1,227 @@
+<section class='row'>
+  <div class='left'>
+    <section class='user-sec'>
+      <div class='user'>
+        {{#if logged_in}}
+          <!-- User is logged in, show Log Out button -->
+          <button id='logout-button'>Log Out</button>
+        {{else}}
+          <!-- User is not logged in, show Log In and Sign Up buttons -->
+          <button class="log-in-btn"><a href='/login'>Log In</a></button>
+          <button class="log-in-btn"><a href='/signup'>Sign Up</a></button>
+        {{/if}}
+      </div>
+    </section>
+
+    {{#if logged_in}}
+      <section class='user-sec'>
+        <div class='user'>
+          <img class="profile-pic-main" src="https://i.pravatar.cc/50?u={{loggedOnUser.user_id}}">
+          <br/>
+          <br/> 
+          <h1><a
+              href='/user/{{loggedOnUser.user_id}}'
+            >@{{loggedOnUser.user_name}}</a></h1>
+          <br />
+          
+          <p>
+            {{loggedOnUser.user_bio}}
+          </p>
+          <br />
+          <p>Joined on {{format_date loggedOnUser.joined_on}}</p>
+        </div>
+
+
+      </section>
+    {{/if}}
+<div class="user-sec">
+  <br/>
+  <h class="user-sec-sitebiohead">What is tl;dr?</h>
+  <p class="user-sec-sitebio">We set out to create tech forum for the modern era. Combining elements of feed-based social medias with tried and tested technology forums, tl;dr is your first destination for tech related, questions, jokes general discussion and more.
+<br/>
+<br/>
+The main feed utilises forum board-adjacent tags as a filter for a single content stream, promoting creativity through a melting pot of content, with each post limited to a character limit that randomises on each day.
+
+
+  </b>
+</div>
+        <div class="user"> <button onclick="lightFunction()" class="light-button">Toggle light mode</button></div>
+  </div>
+
+  <div class='center'>
+    <div class="char-limit">
+    <h2>Today's Character Limit: {{getCharLimit}}</h2>
+    </div>
+    <section class='cat-sec'>
+      {{#each tags}}
+        <div class='cat-box' data-tag='{{this}}'>
+          <p><a href='/tag/{{this}}'>#{{this}}</a></p>
+        </div>
+      {{/each}}
+    </section>
+
+    {{#if logged_in}}
+      <section class='post-sec'>
+        <input
+          type='text'
+          class='post-sec-post'
+          id='post-text'
+          maxlength={{getCharLimit}}
+
+        />
+        <select
+          name='tag-select'
+          id='tag-select'
+          class='post-sec-cat'
+          label='category'
+        >
+          <option value=''>add a tag</option>
+          {{#each tags}}
+            <option value='#{{this}}'>#{{this}}</option>
+          {{/each}}
+        </select>
+        <button id='post-button'>Post</button>
+      </section>
+    {{/if}}
+
+    {{#each posts as |post|}}
+      <section class='main-sec'>
+        <p class='main-sec-interact'>{{format_date post.created_at}}</p>
+        <!-- <button class="likeButton">Like</button> -->
+        <a href='/user/{{post.user_id}}'><img class="profile-pic" src="https://i.pravatar.cc/50?u={{post.user_id}}"></a> 
+        <p class='main-sec-user'><a
+            href='/user/{{post.user_id}}'
+          >@{{post.user.user_name}}</a>
+          {{#each post.tags as |tag|}}
+            <!-- Loop through the tags associated with the post -->
+            <span class='post-tag'>- <a
+                href='/tag/{{tag.tag_name}}'
+                data-tag='{{tag.tag_name}}'
+              >#{{tag.tag_name}}</a></span>
+          {{/each}}
+        </p>
+
+        <p class='main-sec-post'>
+          {{post.post_content}}
+        </p>
+
+        <div class='main-sec-stats'>
+          <div class='stat-box' onclick='onLikePost({{post.post_id}}, this);'>
+            <img class='stat-img' width='20px' src='/images/heart.png'/>
+            <p id='likes-{{post.post_id}}'><span>{{post.likes}}</span></p>
+          </div>
+
+          <div class='stat-box'>
+            <div class='open'>
+              <img 
+                id='comment-btn-{{post.post_id}}'
+                width='20px'
+                src='/images/comment.png'
+              />
+              <p class="plus-txt">{{post.comments.length}}</p>
+            </div>
+          </div>
+
+        </div>
+
+        <dialog class='modal'>
+          <div class='close'>
+            <i class='fa-solid fa-xmark fa-2xl' style='color: #ffffff;'></i>
+          </div>
+
+          <div class='cmnt-sec'>
+            <a href='/user/{{post.user_id}}'><img class="profile-pic-modal" src="https://i.pravatar.cc/50?u={{post.user_id}}"></a> 
+            <p class='main-sec-interact'>{{format_date post.created_at}}</p>
+            <!-- <button class="likeButton">Like</button> -->
+            <p class='main-sec-user'><a
+                href='/user/{{post.user_id}}'
+              >@{{post.user.user_name}}</a></p>
+
+            <p class='main-sec-post'>
+              {{post.post_content}}
+            </p>
+
+            <input
+              type='text'
+              class='cmnt-sec-post comment-hidden'
+              id='cmnt-text-{{post.post_id}}'
+              maxlength={{getCharLimit}}
+            />
+            <button
+              id='cmnt-button'
+              onclick='newCommentHandler({{post.post_id}});'
+              class='comment-hidden'
+            >Comment</button>
+          </div>
+
+          <div class='comments'>
+            {{#each post.comments as |comment|}}
+              <section class='cmnt-main-sec'>
+                <p class='comment-sec-interact'>{{format_date
+                    comment.created_at
+                  }}</p>
+                <p class='comment-sec-user'><a
+                    href='/user/{{comment.user_id}}'
+                  >@{{comment.user.user_name}}</a></p>
+
+                <p class='comment-sec-post'>
+                  {{comment.comment_text}}
+                </p>
+
+                <div class='comment-sec-stats'>
+                  <div
+                    class='comment-stat-box'
+                    onclick='onLikeComment({{comment.comment_id}}, this);'
+                  >
+                    <img
+                      class='comment-trend-img'
+                      width='20px'
+                      src='/images/heart.png'
+                    />
+                    <p class="comment-stat-number" id='likes-{{comment.comment_id}}'>{{comment.likes}}</p>
+                  </div>
+                </div>
+              </section>
+
+            {{/each}}
+          </div></dialog>
+
+      </section>{{/each}}
+
+  </div>
+
+  <div class='right'>
+    <section class='trending-sec'>Trending:
+
+      {{#each trendingPosts as |trendingPost|}}
+        <section class='trending-main-sec'>
+          <p class='trending-sec-interact'>{{format_date
+              trendingPost.created_at
+            }}</p>
+          <!-- <button class="likeButton">Like</button> -->
+          <p class='trending-sec-user'><a
+              href='/user/{{trendingPost.user_id}}'
+            >@{{trendingPost.user.user_name}}</a></p>
+            <br>
+            <br>
+          <p class='trending-sec-post'>
+            {{trendingPost.post_content}}
+          </p>
+
+          <div class='trending-sec-stats'>
+            <div
+              class='trending-stat-box'
+            >
+              <img class='trend-img' width='20px' src='/images/heart.png' />
+              <p id='likes-{{trendingPost.post_id}}'>{{trendingPost.likes}}</p>
+            </div>
+          </div>
+        </section>
+      {{/each}}
+
+    </section>
+  </div>
+
+</section>
+
+<script src='/scripts/homepage.js'></script>
