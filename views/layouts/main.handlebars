@@ -4,24 +4,36 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
-    <link rel='stylesheet' href='/styles/test.css' />
+    <link rel='stylesheet' href='/Users/danielle/bootcamp/tech-blog-w14/public/styles/test.css' />
     <script src="https://kit.fontawesome.com/520a030a60.js" crossorigin="anonymous"></script>
-    <title>tl;dr - the no fuss tech forum</title>
+    <title> The Tech Blog </title>
   </head>
 
   <body data-logged-in="{{logged_in}}">
-    <section>
+
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/dashboard">Dashboard</a> |
+        <a href="/login">Login</a> |
+        <a href="/logout">Logout</a>
+      </nav>
+
+    <section class="header">
       <header class='header-section'>
-        <a href="/"><img class='logo' src='/images/collectivelogo.png' /></a>
-       
+        The Tech Blog / YD
       </header>
     </section>
 
+    <section class ="centered">
+
     {{{body}}}
 
+    </section>
+
     <footer>
-      <p>&copy; 2023 tl;dr</p>
+      <p>&copy; 2023</p>
       {{!-- <a href="/"><img src='/images/favicon32x32.png' /></a> --}}
     </footer>
   </body>
 </html>
+
