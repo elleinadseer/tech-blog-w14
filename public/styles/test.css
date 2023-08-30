@@ -91,7 +91,7 @@ header {
 }
 
 input {
-    height: 60px;
+    height: 30px;
     background-color: white;
 }
 
@@ -99,4 +99,8 @@ input {
     height: 30px;
     background-color: dimgray;
     color: white;
+}
+
+.timestamp {
+    background-color: saddlebrown;
 }

@@ -1,16 +1,19 @@
 [
     {
-        "name": "Bob Odenkirk",
+        "id": "1",
+        "name": "Bob",
         "email": "bobby.kirk@gmail.com",
         "password": "dlkfjlsljd1"
     },
     {
-        "name": "Sarah Kate",
+        "id": "2",
+        "name": "Sarah",
         "email": "k.sarah2834@gmail.com",
         "password": "jlkllllkj2"
     },
     {
-        "name": "Genesis Angeal",
+        "id": "3",
+        "name": "Genesis",
         "email": "sephiroth.k@gmail.com",
         "password": "erwrerre3"
     }
