@@ -11,11 +11,34 @@
 
   <body data-logged-in="{{logged_in}}">
 
+<script>
+  const logoutHandler = async (event) => {
+  console.log('Logout button clicked')
+  
+    const response = await fetch('/api/users/logout', {
+      method: 'POST',
+      body: '',
+      headers: { 'Content-Type': 'application/json' },
+    });
+  
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+      alert('Failed to logout');
+    }
+  };
+  </script>
+
     <nav>
         <a href="/">Home</a> |
         <a href="/dashboard">Dashboard</a> |
-        <a href="/login">Login</a> |
-        <a href="/logout">Logout</a>
+        {{#if logged_in}}
+          <!-- User is logged in, show Log Out button -->
+        <span id='logout-button' onclick="logoutHandler()">Logout</span>
+        {{else}}
+          <!-- User is not logged in, show Log In and Sign Up buttons -->
+          <a href='/login'>Log In</a>
+        {{/if}}
       </nav>
 
     <section class="header">
@@ -28,12 +51,12 @@
 
     {{{body}}}
 
-
-
     <footer>
       <p>&copy; 2023</p>
       {{!-- <a href="/"><img src='/images/favicon32x32.png' /></a> --}}
     </footer>    </section>
+
+    <script src='./scripts/forms.js'></script>
   </body>
 </html>
 

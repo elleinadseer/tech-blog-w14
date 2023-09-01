@@ -104,3 +104,10 @@ input {
 .timestamp {
     background-color: saddlebrown;
 }
+
+#logout-button {
+    background-color: saddlebrown;
+    cursor: pointer;
+    color: white;
+    padding: 5px;
+}

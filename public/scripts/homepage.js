@@ -1,63 +1,3 @@
-const logoutHandler = async (event) => {
-    event.preventDefault();
-  
-    const response = await fetch('/api/users/logout', {
-      method: 'POST',
-      body: '',
-      headers: { 'Content-Type': 'application/json' },
-    });
-  
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to logout');
-    }
-  };
-  
-  function onLikePost(postId, element) {
-    // Send a POST request to the like API endpoint for the post to be liked
-    fetch(`/api/posts/like/${postId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then((response) => {
-      if (response.ok) {
-        // Update the number of likes for the liked post
-        response.json().then((data) => {
-          document.getElementById(`likes-${postId}`).innerHTML = data.likes;
-  
-          // Disable the like button for that post to prevent liking multiple times
-          element.onclick = null;
-        });
-        // document.location.reload();
-      } else {
-        alert('Failed to like post');
-      }
-    });
-  }
-  
-  // Works in much the same way as onLikePost
-  function onLikeComment(commentId, element) {
-    fetch(`/api/comments/like/${commentId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then((response) => {
-      if (response.ok) {
-        response.json().then((data) => {
-          document.getElementById(`likes-${commentId}`).innerHTML = data.likes;
-  
-          element.onclick = null;
-        });
-        // document.location.reload();
-      } else {
-        alert('Failed to like comment');
-      }
-    });
-  }
-  
   const newPostHandler = async (event) => {
     event.preventDefault();
   
@@ -154,10 +94,6 @@ const logoutHandler = async (event) => {
   };
   
   document.addEventListener('DOMContentLoaded', updateCommentElementVisibility);
-  
-  document
-    .querySelector('#logout-button')
-    .addEventListener('click', logoutHandler);
   
   document
     .querySelector('#post-button')

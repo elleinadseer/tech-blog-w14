@@ -2,10 +2,11 @@
 
     <section class="mainPost">
 
-        <p class="title"> {{post.title}} <span class="timestamp"> {{format_date post.created_at}} </span> </p>
+        <p class="title"> <a href="/post/{{post.id}}">{{post.title}}</a> <span class="timestamp"> {{format_date post.created_at}} </span> </p>
 
         <p class="postContent"> {{post.body}} </p>
 
     </section>
 
     {{/each}}
+

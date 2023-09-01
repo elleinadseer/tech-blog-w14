@@ -1,20 +1,17 @@
 [
     {
-        "id": "1",
-        "name": "Bob",
-        "email": "bobby.kirk@gmail.com",
-        "password": "dlkfjlsljd1"
+        "user_name": "Bob",
+        "user_password": "dlkfjlsljd1",
+        "user_email": "bobby.kirk@gmail.com"
     },
     {
-        "id": "2",
-        "name": "Sarah",
-        "email": "k.sarah2834@gmail.com",
-        "password": "jlkllllkj2"
+        "user_name": "Sarah",
+        "user_password": "jlkllllkj2",
+        "user_email": "k.sarah2834@gmail.com"
     },
     {
-        "id": "3",
-        "name": "Genesis",
-        "email": "sephiroth.k@gmail.com",
-        "password": "erwrerre3"
+        "user_name": "Genesis",
+        "user_password": "erwrerre3",
+        "user_email": "sephiroth.k@gmail.com"
     }
 ]
