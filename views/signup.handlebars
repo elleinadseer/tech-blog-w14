@@ -1,40 +1,22 @@
-<head>
-  <meta charset='UTF-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-  <title>SIGNUP</title>
-  <link rel='stylesheet' type='text/css' href='./styles/forms.css' />
-</head>
+    <section class="signupSec">
+        <p class="title"> Sign Up </p>
 
-<section class='form-container'>
-  <div class='container'>
-    <form class='signup-form'>
-      <div class='form-group'>
-        <label for='username'>Username</label>
-        <input
-        style="width: 200px;"
-          type='text'
-          id='username-signup'
-          name='username-signup'
-          required
-        />
-      </div>
-      <div class='form-group'>
-        <label for='email'>Email</label>
-        <input type='email' style="width: 300px;" id='email-signup' name='email-signup' required />
-      </div>
-      <div class='form-group'>
-        <label for='password'>Password</label>
-        <input
-        style="width: 200px;"
-          type='password'
-          id='password-signup'
-          name='password-signup'
-          required
-        />
-      </div>
-      <button type='submit' class='btn'>Sign Up</button>
-    </form>
-  </div>
-</section>
+        <section class="container">
+        <form action='/' method='POST' class='signup-form'>
+
+        Username
+        <input type='text' id='username-signup' name='username-signup' required />
+        Email
+        <input type='email' id='email-signup' name='email-signup' required />
+        Password
+        <input type='password' id='password-signup' name='password-signup' required />
+
+        <button type='submit' class='btn'>Sign Up!</button>
+        </form>
+
+        <a href="/login">Login instead</a>
+        </section>
+
+    </section>
 
 <script src='./scripts/forms.js'></script>
