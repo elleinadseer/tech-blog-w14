@@ -117,3 +117,8 @@ a {
     cursor: pointer;
     color: white;
 }
+
+.none {
+    color: blue;
+    background-color: azure;
+}
