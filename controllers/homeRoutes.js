@@ -50,7 +50,7 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-router.get('/profile', async (req, res) => {
+router.get('/dashboard', async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [
@@ -65,7 +65,7 @@ router.get('/profile', async (req, res) => {
 
     const posts = postData.map((project) => project.get({ plain: true }));
 
-      res.render('profile', {
+      res.render('dashboard', {
         posts,
         logged_in: true,
       });

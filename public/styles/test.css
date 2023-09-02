@@ -111,3 +111,9 @@ input {
     color: white;
     padding: 5px;
 }
+
+a {
+    background-color: saddlebrown;
+    cursor: pointer;
+    color: white;
+}
