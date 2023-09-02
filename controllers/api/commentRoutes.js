@@ -6,7 +6,7 @@ router.post('/', withAuth, async (req, res) => {
   
     const newData = {
       body: req.body.body,
-      post_id: req.body.post_id,
+      post_id: req.body.id,
     };
 
   try {

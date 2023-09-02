@@ -1,11 +1,58 @@
-    {{#each posts as |post|}}
+    <script>
+const newCommentHandler = async (postId) => {
+  console.log('Button clicked');
+  const id = `${postId}`;
+  const comment_text = document
+    .querySelector(`#cmnt-text-${postId}`)
+    .value.trim();
 
+  if (id && comment_text) {
+    const response = await fetch(`/api/comments`, {
+      method: 'POST',
+      body: JSON.stringify({ id, body: comment_text }), // Use 'body' instead of 'comment_text'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+      location.reload();
+    }
+  }
+};
+
+    </script>
+    
     <section class="mainPost">
 
-        <p class="title"> {{post.title}} <span class="timestamp"> {{format_date post.created_at}} </span> </p>
+        <p class="title"> {{post.title}} <span class="timestamp"> </span> </p>
 
         <p class="postContent"> {{post.body}} </p>
 
     </section>
 
+    <section class="commenting">
+
+        <p class="title"> </p>
+
+        <section class="container">
+            Comment 
+
+        <input type='text' id='cmnt-text-{{post.id}}' required />
+
+        <button id='cmnt-button' onclick='newCommentHandler({{post.id}});'>Submit</button>
+        </section>
+
+    </section>
+
+    {{#each post.comments as |comment|}}
+    <section class="comment">
+
+        <p class="title"> </p>
+        <section class="container">
+        <p class="commentContent">{{comment.body}}</p>
+        </section>
+    </section>
     {{/each}}

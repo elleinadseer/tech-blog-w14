@@ -4,30 +4,12 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
-    <link rel='stylesheet' href='./styles/test.css'/>
+<link rel="stylesheet" type="text/css" href="http://localhost:3001/styles/test.css">
     <script src="https://kit.fontawesome.com/520a030a60.js" crossorigin="anonymous"></script>
     <title> The Tech Blog </title>
   </head>
 
   <body data-logged-in="{{logged_in}}">
-
-<script>
-  const logoutHandler = async (event) => {
-  console.log('Logout button clicked')
-  
-    const response = await fetch('/api/users/logout', {
-      method: 'POST',
-      body: '',
-      headers: { 'Content-Type': 'application/json' },
-    });
-  
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to logout');
-    }
-  };
-  </script>
 
     <nav>
         <a href="/">Home</a> |
@@ -56,7 +38,8 @@
       {{!-- <a href="/"><img src='/images/favicon32x32.png' /></a> --}}
     </footer>    </section>
 
-    <script src='./scripts/forms.js'></script>
+    <script src='http://localhost:3001/scripts/forms.js'></script>
+    <script src='http://localhost:3001/scripts/homepage.js'></script>
   </body>
 </html>
 
