@@ -1,3 +1,5 @@
+// post method for logout prompt 
+
 const logoutHandler = async (event) => {
   console.log('Logout button clicked')
   

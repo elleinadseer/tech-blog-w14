@@ -1,7 +1,9 @@
+<!-- due to issues with css not rendering I re-iterated the css link here -->
 <head>
   <link rel="stylesheet" type="text/css" href="/styles/test.css">
 </head>
 
+<!-- due to issues with this functioning not being called correctly I've placed it directly in the file -->
 <script>
 const newCommentHandler = async (postId) => {
   console.log('Button clicked');
@@ -46,11 +48,13 @@ const newCommentHandler = async (postId) => {
 
         <input type='text' id='cmnt-text-{{post.id}}' required />
 
+        <!-- attaching the post id to each function called tells us which post was commented on -->
         <button id='cmnt-button' onclick='newCommentHandler({{post.id}});'>Submit</button>
         </section>
 
     </section>
 
+    <!-- rends each comment under the specific post -->
     {{#each post.comments as |comment|}}
     <section class="comment">
 

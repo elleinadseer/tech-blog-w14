@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Post, Comment, User } = require('../models');
 const withAuth = require('../utils/auth');
 
+// display all posts on the homepage through a map
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -26,6 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// display only posts only of a certain id when clicking on post link 
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -50,6 +52,7 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
+// dashboard (unfinished)
 router.get('/dashboard', async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -74,6 +77,7 @@ router.get('/dashboard', async (req, res) => {
   }
 });
 
+// renders login page and redirects
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to their profile route
   if (req.session.logged_in) {
@@ -84,6 +88,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// renders signup and redirects
 router.get('/signup', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');

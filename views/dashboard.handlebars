@@ -34,6 +34,7 @@ const newPostHandler = async (event) => {
     .addEventListener('click', newPostHandler);
 </script>
 
+<!-- enables user to create post if logged in, otherwise tell user to log in -->
 {{#if logged_in}}
     <section class="newPosting">
         <p class="title">Create New Post</p>

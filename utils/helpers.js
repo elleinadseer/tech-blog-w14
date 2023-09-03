@@ -1,6 +1,8 @@
 const dayjs = require('dayjs');
 const relativeTime = require('dayjs/plugin/relativeTime');
 
+// timing helpers
+
 const format_date = (date) => {
   return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 };
